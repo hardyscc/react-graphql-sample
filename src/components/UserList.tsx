@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 
 export const UserList = () => {
-  return <div></div>;
+  const { users } = useContext(GlobalContext);
+
+  return <h2>{users.length}</h2>;
 };

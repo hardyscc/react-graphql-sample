@@ -17,7 +17,7 @@ const initialState: State = {
 export const GlobalContext = createContext<State>(initialState);
 
 // Provider component
-export const GlobalProvider = () => {
+export const GlobalProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   // Actions
@@ -26,8 +26,8 @@ export const GlobalProvider = () => {
   }
 
   return (
-    <GlobalContext.Provider
-      value={{ users: state.users, updateUsers }}
-    ></GlobalContext.Provider>
+    <GlobalContext.Provider value={{ users: state.users, updateUsers }}>
+      {children}
+    </GlobalContext.Provider>
   );
 };
