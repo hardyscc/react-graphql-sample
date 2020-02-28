@@ -1,23 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useEffect } from "react";
+import "./App.css";
+import { GlobalContext } from "./context/GlobalState";
+import { useUsersQuery } from "./generated/graphql";
 
 function App() {
+  const { updateUsers } = useContext(GlobalContext);
+  const { data, loading, error } = useUsersQuery();
+
+  useEffect(() => {
+    if (data) {
+      updateUsers(data.users);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (loading) return <h2>loading</h2>;
+  if (error) return <h2>error</h2>;
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <ul>
+          {data?.users.map(user => (
+            <li>
+              {user.id} {user.name}
+            </li>
+          ))}
+        </ul>
       </header>
     </div>
   );
