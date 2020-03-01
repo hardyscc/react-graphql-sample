@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React, { useState } from "react";
+import { UsersStore } from "../context/UsersStore";
 
 export const AddUser = () => {
-  const { addUser } = useContext(GlobalContext);
+  const { addUser } = UsersStore.useContainer();
+
   const [name, setName] = useState("");
   return (
     <div>

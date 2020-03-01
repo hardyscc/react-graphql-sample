@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import { GlobalContext } from "../context/GlobalState";
+import React, { useEffect } from "react";
+import { UsersStore } from "../context/UsersStore";
 
 export const UserList = () => {
-  const { users, getUsers, deleteUser } = useContext(GlobalContext);
+  const { users, getUsers, deleteUser } = UsersStore.useContainer();
 
   useEffect(() => {
     getUsers();
