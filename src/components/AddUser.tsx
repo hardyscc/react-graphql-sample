@@ -6,7 +6,7 @@ export const AddUser = () => {
   const [name, setName] = useState("");
   return (
     <div>
-      <input value={name} onChange={e => setName(e.target.value)}></input>
+      <input value={name} onChange={e => setName(e.target.value)} />
       <button
         onClick={e => {
           addUser({ name });

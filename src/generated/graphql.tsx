@@ -62,6 +62,16 @@ export type CreateUserMutation = (
   ) }
 );
 
+export type RemoveUserMutationVariables = {
+  id: Scalars['String']
+};
+
+
+export type RemoveUserMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'removeUser'>
+);
+
 export type UsersQueryVariables = {};
 
 
@@ -86,6 +96,14 @@ export const CreateUserDocument = gql`
 export type CreateUserMutationFn = ApolloReactCommon.MutationFunction<CreateUserMutation, CreateUserMutationVariables>;
 export type CreateUserMutationResult = ApolloReactCommon.MutationResult<CreateUserMutation>;
 export type CreateUserMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateUserMutation, CreateUserMutationVariables>;
+export const RemoveUserDocument = gql`
+    mutation RemoveUser($id: String!) {
+  removeUser(id: $id)
+}
+    `;
+export type RemoveUserMutationFn = ApolloReactCommon.MutationFunction<RemoveUserMutation, RemoveUserMutationVariables>;
+export type RemoveUserMutationResult = ApolloReactCommon.MutationResult<RemoveUserMutation>;
+export type RemoveUserMutationOptions = ApolloReactCommon.BaseMutationOptions<RemoveUserMutation, RemoveUserMutationVariables>;
 export const UsersDocument = gql`
     query Users {
   users {

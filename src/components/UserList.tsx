@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
 export const UserList = () => {
-  const { users, getUsers } = useContext(GlobalContext);
+  const { users, getUsers, deleteUser } = useContext(GlobalContext);
 
   useEffect(() => {
     getUsers();
@@ -12,7 +12,9 @@ export const UserList = () => {
   return (
     <ul>
       {users.map(user => (
-        <li key={user.id}>{user.name}</li>
+        <li key={user.id}>
+          {user.name} <button onClick={() => deleteUser(user.id)}>x</button>
+        </li>
       ))}
     </ul>
   );

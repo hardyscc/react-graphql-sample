@@ -5,6 +5,9 @@ import {
   CreateUserInput,
   CreateUserMutation,
   CreateUserMutationVariables,
+  RemoveUserDocument,
+  RemoveUserMutation,
+  RemoveUserMutationVariables,
   User,
   UsersDocument,
   UsersQuery
@@ -13,7 +16,8 @@ import { AppReducer } from "./AppReducer";
 
 export enum Actions {
   UPDATE_USERS,
-  ADD_USER
+  ADD_USER,
+  DELETE_USER
 }
 
 // Initial state
@@ -21,12 +25,14 @@ export type State = {
   users: User[];
   getUsers: () => void;
   addUser: (user: CreateUserInput) => void;
+  deleteUser: (id: string) => void;
 };
 
 const initialState: State = {
   users: [],
   getUsers: () => {},
-  addUser: (user: CreateUserInput) => {}
+  addUser: (user: CreateUserInput) => {},
+  deleteUser: (id: string) => {}
 };
 
 // Create context
@@ -58,12 +64,26 @@ export const GlobalProvider: React.FC = ({ children }) => {
     }
   }
 
+  async function deleteUser(id: string) {
+    const result = await client.mutate<
+      RemoveUserMutation,
+      RemoveUserMutationVariables
+    >({
+      mutation: RemoveUserDocument,
+      variables: { id }
+    });
+    if (result.data) {
+      dispatch({ type: Actions.DELETE_USER, payload: id });
+    }
+  }
+
   return (
     <GlobalContext.Provider
       value={{
         users: state.users,
         getUsers,
-        addUser
+        addUser,
+        deleteUser
       }}
     >
       {children}
