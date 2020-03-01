@@ -10,6 +10,7 @@ export const AddUser = () => {
       <button
         onClick={e => {
           addUser({ name });
+          setName("");
         }}
       >
         Add
