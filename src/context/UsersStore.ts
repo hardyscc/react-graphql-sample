@@ -16,13 +16,20 @@ import {
 
 function useUsersStore() {
   const [users, setUsers] = useState<User[]>([]);
+  const [error, setError] = useState("");
+
   const client = useApolloClient();
 
   const getUsers = async () => {
     const result = await client.query<UsersQuery>({
       query: UsersDocument
     });
-    setUsers(result.data.users);
+    if (result.data?.users) {
+      setUsers(result.data.users);
+      setError("");
+    } else {
+      setError(`cannot querys users`);
+    }
   };
 
   const addUser = async (user: CreateUserInput) => {
@@ -33,10 +40,12 @@ function useUsersStore() {
       mutation: CreateUserDocument,
       variables: { input: user }
     });
-    if (!result.data) {
-      throw new Error("addUser error!");
+    if (result.data?.createUser) {
+      setUsers([...users, result.data.createUser]);
+      setError("");
+    } else {
+      setError(`cannot add user ${user}`);
     }
-    setUsers([...users, result.data.createUser]);
   };
 
   const deleteUser = async (id: string) => {
@@ -47,13 +56,15 @@ function useUsersStore() {
       mutation: RemoveUserDocument,
       variables: { id }
     });
-    if (!result.data) {
-      throw new Error("deleteUser error!");
+    if (result.data?.removeUser) {
+      setUsers(users.filter(user => user.id !== id));
+      setError("");
+    } else {
+      setError(`cannot delete user ${id}`);
     }
-    setUsers(users.filter(user => user.id !== id));
   };
 
-  return { users, getUsers, addUser, deleteUser };
+  return { users, error, getUsers, addUser, deleteUser };
 }
 
 export const UsersStore = createContainer(useUsersStore);

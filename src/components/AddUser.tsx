@@ -5,13 +5,18 @@ export const AddUser = () => {
   const [name, setName] = useState("");
   const { users, addUser } = UsersStore.useContainer();
 
+  function userExists(name: string) {
+    return users.filter(user => user.name === name).length > 0;
+  }
+
   return (
     <div>
       <input value={name} onChange={e => setName(e.target.value)} />
       <button
+        disabled={!name}
         onClick={e => {
-          if (users.filter(user => user.name === name).length > 0) {
-            alert("already exists");
+          if (userExists(name)) {
+            alert("user already exists");
             return;
           }
           addUser({ name });
