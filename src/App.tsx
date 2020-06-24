@@ -1,21 +1,22 @@
 import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
-import { AddUser } from "./components/AddUser";
-import { AlertMessage } from "./components/AlertMessage";
-import { UserList } from "./components/UserList";
-import { UsersStore } from "./context/UsersStore";
+import { Menu } from "./components/Menu";
+import { PrivateRoute } from "./components/PrivateRoute";
+import { Logout } from "./pages/Logout";
+import { User } from "./pages/User";
 
 function App() {
   return (
-    <UsersStore.Provider>
-      <div className="App">
-        <header className="App-header">
-          <AlertMessage />
-          <UserList />
-          <AddUser />
-        </header>
-      </div>
-    </UsersStore.Provider>
+    <div className="App">
+      <header className="App-header">
+        <BrowserRouter>
+          <Menu />
+          <PrivateRoute exact path="/" component={User} />
+          <Route path="/logout" component={Logout} />
+        </BrowserRouter>
+      </header>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { UsersStore } from "../context/UsersStore";
+import { UsersStore } from "../../context/UsersStore";
 
 export const AlertMessage = () => {
   const { error } = UsersStore.useContainer();

@@ -1,0 +1,8 @@
+{
+  "realm": "MyDemo",
+  "auth-server-url": "https://keycloak.apps.sysforce.com/auth",
+  "ssl-required": "external",
+  "resource": "react-graphql-sample",
+  "public-client": true,
+  "confidential-port": 0
+}

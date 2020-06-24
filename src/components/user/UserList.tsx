@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { UsersStore } from "../context/UsersStore";
+import { UsersStore } from "../../context/UsersStore";
 
 export const UserList = () => {
   const { users, getUsers, deleteUser } = UsersStore.useContainer();
@@ -11,7 +11,7 @@ export const UserList = () => {
 
   return (
     <ul>
-      {users.map(user => (
+      {users.map((user) => (
         <li key={user.id}>
           {user.name} <button onClick={() => deleteUser(user.id)}>x</button>
         </li>

@@ -1,19 +1,19 @@
 import { ApolloProvider } from "@apollo/react-hooks";
-import ApolloClient from "apollo-boost";
+import { KeycloakProvider } from "@react-keycloak/web";
 import React from "react";
 import ReactDOM from "react-dom";
+import { client } from "./apollo";
 import App from "./App";
 import "./index.css";
+import { keycloak } from "./keycloak";
 import * as serviceWorker from "./serviceWorker";
 
-const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql"
-});
-
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
+  <KeycloakProvider keycloak={keycloak}>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </KeycloakProvider>,
   document.getElementById("root")
 );
 
