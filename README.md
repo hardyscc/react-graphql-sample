@@ -104,7 +104,7 @@ Start the React server by `npm start`, you should see the `UserList` and `AddUse
 
 ## GraphQL Client Setup
 
-The previous [NodeJS GraphQL Backend Tutorial](tutorial-nodejs-graphql.md) will be reused as the GraphQL backend.
+The previous [NodeJS GraphQL Backend Tutorial](../../../nodejs-graphql-sample) will be reused as the GraphQL backend.
 
 ### Install GraphQL Client Libraries
 
