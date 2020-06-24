@@ -195,7 +195,7 @@ Create the following GraphQL query and mutation files for the generator.
    }
    ```
 
-Start the GraphQL server from previous [NodeJS GraphQL Backend Tutorial](tutorial-nodejs-graphql.md).
+Start the GraphQL server from previous [NodeJS GraphQL Backend Tutorial](../../../nodejs-graphql-sample).
 
 ```bash
 cd nodejs-graphql-sample
