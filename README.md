@@ -2,7 +2,7 @@
 
 ## Overview
 
-Build a basic CRUD frontend application with React & GraphQL, also includes Gitlab's CI/CD Pipeline setup which enable the auto deployment into OpenShift.
+Build a basic CRUD frontend application with React & GraphQL.
 
 ## Technologies
 
@@ -153,10 +153,10 @@ generates:
   src/generated/graphql.tsx:
     plugins:
       ...
-    <b>config:
+    config:
       withHOC: false
       withComponent: false
-      withHooks: true</b>
+      withHooks: true
 ```
 
 > In this tutorial we will only use the React Hooks, therefore the `HOC` and `Component` code generation are disabled.
